@@ -22,7 +22,7 @@ resource "aws_lb_listener" "product_listener_alb" {
   load_balancer_arn = aws_lb.product_alb[0].arn
   port              = "443"
   protocol          = "HTTPS"
-  certificate_arn   = data.aws_acm_certificate.loadpass.arn
+  certificate_arn   = data.aws_acm_certificate.cert.arn
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.product_target_group[0].arn
@@ -37,7 +37,7 @@ resource "aws_lb_listener" "product_listener_alb" {
 
 # resource "aws_lb_listener_certificate" "product_alb_certificate" {
 #   listener_arn    = aws_lb_listener.product_listener_alb[0].arn
-#   certificate_arn = data.aws_acm_certificate.loadpass.arn
+#   certificate_arn = data.aws_acm_certificate.cert.arn
 # }
 
 resource "aws_security_group" "alb_sg" {
